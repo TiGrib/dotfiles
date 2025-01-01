@@ -70,37 +70,18 @@ return {
                 end,
                 ["pylsp"] = function()
                     local lspconfig = require("lspconfig")
-                    -- Function for setup .venv
-                    local function get_python_path(workspace)
-                        local venv_path = workspace .. ".venv/bin/pylint"
-                        if vim.fn.executable(venv_path) == 1 then
-                            return venv_path
-                        else
-                            return vim.fn.exepath("python3") -- fallback to global Python
-                        end
-                    end
-
                     lspconfig.pylsp.setup {
-                        -- cmd = { get_python_path(vim.fn.getcwd()) }, -- Dynamicaly set Python executable
-                        settings = {
+                       settings = {
                             pylsp = {
                                 plugins = {
-                                    -- formater options
-                                    pylsp_black = {enable = true},
-                                    autopep8 = { enabled = false },
-                                    yapf = { enabled = false },
-                                    -- linter options
-                                    pylint = { enabled = false, executable = "pylint" },
                                     pyflakes = { enabled = false },
                                     pycodestyle = { enabled = false },
-                                    -- type checker
-                                    pylsp_mypy = { enabled = true },
-                                    -- auto-completion options
-                                    jedi_completion = { fuzzy = true },
-                                    -- import sorting
-                                    pylsp_isort = { enabled = true },
-                                    pylsp_flake8 = { enabled = true, config = "pyproject.toml" },
-                                    mccabe = { enable = false },
+                                    autopep8 = { enabled = false },
+                                    yapf = { enabled = false },
+                                    mccabe = { enabled = false },
+                                    pylsp_mypy = { enabled = false },
+                                    pylsp_black = { enabled = false },
+                                    pylsp_isort = { enabled = false },
                                 },
                             },
                         },
